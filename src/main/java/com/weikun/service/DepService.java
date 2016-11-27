@@ -32,4 +32,8 @@ public class DepService {
     public List<Dep> selectAll(){
         return myDepMapper. selectAll();
     }
+
+    public Dep findDepEmployeesById(int no){
+        return depMapper.findDepEmployeesById(no);
+    }
 }

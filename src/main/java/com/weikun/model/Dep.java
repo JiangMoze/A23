@@ -5,6 +5,15 @@ public class Dep {
 
     private String deptname;
 
+    private Object elist;//employee list
+
+    public Object getElist() {
+        return elist;
+    }
+
+    public void setElist(Object elist) {
+        this.elist = elist;
+    }
 
     public Integer getDeptno() {
         return deptno;

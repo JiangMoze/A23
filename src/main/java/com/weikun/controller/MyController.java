@@ -2,9 +2,11 @@ package com.weikun.controller;
 
 import com.weikun.model.Dep;
 import com.weikun.model.DepExample;
+import com.weikun.model.Employee;
 import com.weikun.service.DepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -35,6 +37,20 @@ public class MyController {
     public Object getAll1(){
         List<Dep> list=service.selectAll();
         System.out.print(list);
+        return "";
+    }
+
+
+    @RequestMapping("/all2/no/{no}")
+    public Object getAll2(@PathVariable("no") Integer no){//通过dep找到employees
+        Dep dep=service.findDepEmployeesById(no);
+        System.out.print(dep.getDeptname());
+
+        List<Employee> list=(List<Employee>)dep.getElist();
+
+        for(Employee e :list){
+            System.out.print(e.getName());
+        }
         return "";
     }
 }

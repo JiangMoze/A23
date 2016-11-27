@@ -65,6 +65,21 @@ public interface EmployeeMapper {
     })
     Employee selectByPrimaryKey(Integer id);
 
+
+    @Select({
+            "select",
+            "Id, name, deptno, sex",
+            "from employee",
+            "where deptno = #{no,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="Id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="deptno", property="deptno", jdbcType=JdbcType.INTEGER),
+            @Result(column="sex", property="sex", jdbcType=JdbcType.CHAR)
+    })
+    List<Employee> findEmpsByDepno(Integer no);
+
     @UpdateProvider(type=EmployeeSqlProvider.class, method="updateByExampleSelective")
     int updateByExampleSelective(@Param("record") Employee record, @Param("example") EmployeeExample example);
 
